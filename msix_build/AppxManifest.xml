@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10">
+
+  <Identity
+    Name="PCTroubleshooter"
+    Publisher="CN=PC Troubleshooter Team"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="9f1bb572-d5ce-4043-8ac2-e1c47e1b8a5b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>PC Troubleshooter</DisplayName>
+    <PublisherDisplayName>PC Troubleshooter Team</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+    <Description>Professional Windows System Diagnostic and Repair Tool with 20+ automated diagnostic scripts across 6 categories.</Description>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22000.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22000.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="VFS\ProgramFilesX64\PC Troubleshooter\PC_Troubleshooter.exe"
+      EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="PC Troubleshooter"
+        Description="Professional Windows System Diagnostic and Repair Tool"
+        BackgroundColor="transparent"
+        Square150x150Logo="Images\Square150x150Logo.scale-200.png"
+        Square44x44Logo="Images\Square44x44Logo.scale-200.png">
+        <uap:DefaultTile 
+          Wide310x150Logo="Images\Wide310x150Logo.scale-200.png"
+          Square71x71Logo="Images\SmallTile.scale-200.png"
+          Square310x310Logo="Images\LargeTile.scale-200.png"
+          ShortName="PC Troubleshooter">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Images\SplashScreen.scale-200.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer" />
+  </Capabilities>
+</Package>
