@@ -149,14 +149,17 @@ VSVersionInfo(
         return version_file
     
     def convert_icon_to_ico(self):
-        """Convert PNG icon to ICO format for Windows"""
-        try:
-            from PIL import Image
-            
-            png_icon = self.project_root / "assets" / "icon.png"
-            ico_icon = self.project_root / "assets" / "icon.ico"
-            
-            if png_icon.exists():
+        """Check if ICO icon exists, create from PNG if needed"""
+        ico_icon = self.project_root / "assets" / "icon.ico"
+        png_icon = self.project_root / "assets" / "icon.png"
+        
+        if ico_icon.exists():
+            print(f"   ✅ ICO icon found: {ico_icon}")
+            return ico_icon
+        elif png_icon.exists():
+            try:
+                from PIL import Image
+                
                 print("🎨 Converting PNG icon to ICO format...")
                 img = Image.open(png_icon)
                 
@@ -165,23 +168,23 @@ VSVersionInfo(
                 img.save(ico_icon, format='ICO', sizes=sizes)
                 print(f"   ✅ Created ICO icon: {ico_icon}")
                 return ico_icon
-            else:
-                print(f"   ⚠️ PNG icon not found: {png_icon}")
-                return None
                 
-        except ImportError:
-            print("   📥 Installing Pillow for icon conversion...")
-            subprocess.run([sys.executable, "-m", "pip", "install", "Pillow"], check=True)
-            return self.convert_icon_to_ico()  # Retry after installation
-        except Exception as e:
-            print(f"   ⚠️ Icon conversion failed: {e}")
+            except ImportError:
+                print("   📥 Installing Pillow for icon conversion...")
+                subprocess.run([sys.executable, "-m", "pip", "install", "Pillow"], check=True)
+                return self.convert_icon_to_ico()  # Retry after installation
+            except Exception as e:
+                print(f"   ⚠️ Icon conversion failed: {e}")
+                return None
+        else:
+            print(f"   ⚠️ No icon files found in assets folder")
             return None
     
     def build_executable(self):
         """Build the executable using PyInstaller"""
         print("🔨 Building executable with PyInstaller...")
         
-        # Convert icon
+        # Convert/check icon
         ico_icon = self.convert_icon_to_ico()
         
         # Create spec file
