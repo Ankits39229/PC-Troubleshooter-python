@@ -4,6 +4,18 @@ echo    Disk Cleanup Tool
 echo ========================================
 echo.
 
+:: Check for admin privileges
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo [INFO] Running with administrator privileges.
+) else (
+    echo [WARNING] Administrator privileges are required for disk cleanup.
+    echo [INFO] This is needed to clean system files, Windows Update cache, and manage system restore points.
+    echo [INFO] Relaunching as administrator...
+    powershell "start-process cmd -argumentlist '/c %~f0' -verb runas"
+    exit
+)
+
 echo [INFO] Running Windows Disk Cleanup utility...
 echo [INFO] This will open the Disk Cleanup dialog...
 cleanmgr /sagerun:1
@@ -15,10 +27,6 @@ echo [INFO] Cleaning system files and old Windows installations...
 :: Clean Windows Update files
 echo [INFO] Cleaning Windows Update files...
 dism /online /cleanup-image /startcomponentcleanup /resetbase >nul 2>&1
-
-:: Clean Windows Store cache
-echo [INFO] Cleaning Windows Store cache...
-wsreset >nul 2>&1
 
 :: Clean thumbnail cache
 echo [INFO] Cleaning thumbnail cache...
@@ -34,9 +42,11 @@ powershell -Command "Get-ComputerRestorePoint | Where-Object {$_.CreationTime -l
 
 echo.
 echo [INFO] Current disk space:
-powershell -Command "Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -eq 3} | Select-Object DeviceID, @{Name='Size(GB)';Expression={[math]::Round($_.Size/1GB,2)}}, @{Name='FreeSpace(GB)';Expression={[math]::Round($_.FreeSpace/1GB,2)}}, @{Name='%Free';Expression={[math]::Round(($_.FreeSpace/$_.Size)*100,2)}} | Format-Table -AutoSize"
+powershell -Command "Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -eq 3} | Select-Object DeviceID, @{Name='Size(GB)';Expression={[math]::Round($_.Size/1GB,2)}}, @{Name='FreeSpace(GB)';Expression={[math]::Round($_.FreeSpace/1GB,2)}}, @{Name='%%Free';Expression={[math]::Round(($_.FreeSpace/$_.Size)*100,2)}} | Format-Table -AutoSize"
 
 echo.
 echo ========================================
 echo Disk cleanup completed!
 echo ========================================
+
+exit

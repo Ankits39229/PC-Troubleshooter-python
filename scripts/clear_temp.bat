@@ -4,6 +4,18 @@ echo    Temporary Files Cleanup Tool
 echo ========================================
 echo.
 
+:: Check for admin privileges
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo [INFO] Running with administrator privileges.
+) else (
+    echo [WARNING] Administrator privileges are required for temporary files cleanup.
+    echo [INFO] This is needed to clean system temporary files, prefetch, and Windows Update cache.
+    echo [INFO] Relaunching as administrator...
+    powershell "start-process cmd -argumentlist '/c %~f0' -verb runas"
+    exit
+)
+
 echo [INFO] Clearing Windows temporary files...
 del /f /s /q "%temp%\*.*" >nul 2>&1
 for /d %%i in ("%temp%\*") do rd /s /q "%%i" >nul 2>&1
@@ -42,3 +54,5 @@ echo.
 echo ========================================
 echo Temporary files cleanup completed!
 echo ========================================
+
+exit

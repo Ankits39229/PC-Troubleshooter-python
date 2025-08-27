@@ -4,6 +4,18 @@ echo    System File Checker (SFC) Tool
 echo ========================================
 echo.
 
+:: Check for admin privileges
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo [INFO] Running with administrator privileges.
+) else (
+    echo [WARNING] Administrator privileges are required for SFC scan.
+    echo [INFO] This is needed to scan and repair system files, which require system-level access.
+    echo [INFO] Relaunching as administrator...
+    powershell "start-process cmd -argumentlist '/c %~f0' -verb runas"
+    exit
+)
+
 echo [INFO] Running System File Checker...
 echo [INFO] This may take several minutes. Please wait...
 echo.
@@ -38,3 +50,5 @@ echo ========================================
 echo System File Checker scan completed!
 echo Check the output above for any issues found.
 echo ========================================
+
+exit

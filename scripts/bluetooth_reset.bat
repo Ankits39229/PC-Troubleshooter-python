@@ -4,6 +4,18 @@ echo    Bluetooth Stack Reset Tool
 echo ========================================
 echo.
 
+:: Check for admin privileges
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo [INFO] Running with administrator privileges.
+) else (
+    echo [WARNING] Administrator privileges are required for Bluetooth stack reset.
+    echo [INFO] This is needed to stop/start services, modify registry, and reset Bluetooth adapters.
+    echo [INFO] Relaunching as administrator...
+    powershell "start-process cmd -argumentlist '/c %~f0' -verb runas"
+    exit
+)
+
 echo [INFO] Stopping Bluetooth services...
 net stop "Bluetooth Support Service" >nul 2>&1
 net stop "Bluetooth Audio Gateway Service" >nul 2>&1
@@ -41,3 +53,5 @@ echo ========================================
 echo Bluetooth stack reset completed!
 echo Please try pairing your devices again.
 echo ========================================
+
+exit

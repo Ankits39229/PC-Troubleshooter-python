@@ -5,9 +5,9 @@ echo ========================================
 echo.
 
 echo [INFO] Stopping Bluetooth services...
-net stop "Bluetooth Support Service"
-net stop "Bluetooth Audio Gateway Service"
-net stop "Bluetooth User Service"
+net stop bthserv
+net stop BTAGService
+net stop BluetoothUserService
 
 echo.
 echo [INFO] Waiting 3 seconds...
@@ -15,9 +15,9 @@ timeout /t 3 /nobreak >nul
 
 echo.
 echo [INFO] Starting Bluetooth services...
-net start "Bluetooth Support Service"
-net start "Bluetooth Audio Gateway Service" 
-net start "Bluetooth User Service"
+net start bthserv
+net start BTAGService
+net start BluetoothUserService
 
 echo.
 echo [INFO] Current Bluetooth service status:

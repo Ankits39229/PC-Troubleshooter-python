@@ -187,20 +187,21 @@ class MainWindow(QMainWindow):
         """Show a professional startup message"""
         startup_msg = """
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                         PC TROUBLESHOOTER v1.0                              ║
-║                    Professional System Diagnostics Tool                     ║
-║                             >>> DARK MODE <<<                               ║
+║                            PC TROUBLESHOOTER v1.0                            ║
+║                     Professional System Diagnostics Tool                     ║
+║                              >>> DARK MODE <<<                               ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║                                                                              ║
-║  🌐 Network          📶 Bluetooth         🔊 Audio                          ║
-║  🖥️  Display          💾 Storage           ⚡ Performance                    ║
+║  Network                    Bluetooth                  Audio                 ║
+║  Display                    Storage                    Performance           ║
 ║                                                                              ║
-║  >> DARK THEME ACTIVE - Professional diagnostics ready                      ║
-║  >> Select a category from the left panel to begin troubleshooting          ║
+║  >> DARK THEME ACTIVE - Professional diagnostics ready                       ║
+║  >> Select a category from the left panel to begin troubleshooting           ║
 ║                                                                              ║
-║  💡 Tip: Run as Administrator for full functionality                        ║
-║  🎨 Current Theme: Complete Black Dark Mode                                 ║
+║  Tip: Run as Administrator for full functionality                            ║
+║  Current Theme: Complete Black Dark Mode                                     ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
+
 
 🕐 Session started at """ + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + """ [DARK MODE]
 
