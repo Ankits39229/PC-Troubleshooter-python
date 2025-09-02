@@ -5,7 +5,7 @@ echo ========================================
 echo.
 
 echo [INFO] Current memory usage overview...
-powershell -Command "Get-WmiObject -Class Win32_OperatingSystem | Select-Object @{Name='Total RAM (GB)';Expression={[math]::Round($_.TotalVisibleMemorySize/1MB,2)}}, @{Name='Available RAM (GB)';Expression={[math]::Round($_.FreePhysicalMemory/1MB,2)}}, @{Name='Used RAM (GB)';Expression={[math]::Round(($_.TotalVisibleMemorySize-$_.FreePhysicalMemory)/1MB,2)}}, @{Name='Memory Usage %';Expression={[math]::Round((($_.TotalVisibleMemorySize-$_.FreePhysicalMemory)/$_.TotalVisibleMemorySize)*100,2)}} | Format-Table -AutoSize"
+powershell -Command "Get-WmiObject -Class Win32_OperatingSystem | Select-Object @{Name='Total RAM (GB)';Expression={[math]::Round($_.TotalVisibleMemorySize/1MB,2)}}, @{Name='Available RAM (GB)';Expression={[math]::Round($_.FreePhysicalMemory/1MB,2)}}, @{Name='Used RAM (GB)';Expression={[math]::Round(($_.TotalVisibleMemorySize-$_.FreePhysicalMemory)/1MB,2)}}, @{Name='Memory Usage %%';Expression={[math]::Round((($_.TotalVisibleMemorySize-$_.FreePhysicalMemory)/$_.TotalVisibleMemorySize)*100,2)}} | Format-Table -AutoSize"
 
 echo.
 echo [INFO] Top memory-consuming processes...

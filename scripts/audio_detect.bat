@@ -9,11 +9,11 @@ powershell -Command "Get-WmiObject -Class Win32_SoundDevice | Select-Object Name
 
 echo.
 echo [INFO] Audio playback devices:
-powershell -Command "Get-AudioDevice -Playback | Format-Table"
+powershell -Command "Get-PnpDevice | Where-Object {$_.Class -eq 'MEDIA' -or $_.Class -eq 'AudioEndpoint'} | Select-Object FriendlyName, Status | Format-Table -AutoSize"
 
 echo.
 echo [INFO] Audio recording devices:
-powershell -Command "Get-AudioDevice -Recording | Format-Table"
+powershell -Command "Get-PnpDevice | Where-Object {$_.Class -eq 'MEDIA' -or $_.Class -eq 'AudioEndpoint'} | Select-Object FriendlyName, Status | Format-Table -AutoSize"
 
 echo.
 echo [INFO] Checking audio drivers in Device Manager...
@@ -21,7 +21,7 @@ powershell -Command "Get-PnpDevice | Where-Object {$_.Class -eq 'AudioEndpoint' 
 
 echo.
 echo [INFO] Current default audio device:
-powershell -Command "Get-AudioDevice -Default | Format-Table"
+powershell -Command "Get-PnpDevice | Where-Object {$_.Class -eq 'MEDIA'} | Select-Object -First 1 | Select-Object FriendlyName, Status | Format-Table -AutoSize"
 
 echo.
 echo ========================================

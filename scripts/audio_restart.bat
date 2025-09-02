@@ -27,7 +27,7 @@ sc query "MMCSS" | findstr "STATE"
 
 echo.
 echo [INFO] Audio devices status:
-powershell -Command "Get-AudioDevice -List | Format-Table"
+powershell -Command "Get-PnpDevice | Where-Object {$_.Class -eq 'MEDIA'} | Select-Object FriendlyName, Status | Format-Table -AutoSize"
 
 echo.
 echo ========================================

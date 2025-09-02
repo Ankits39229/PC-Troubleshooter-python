@@ -5,7 +5,7 @@ echo ========================================
 echo.
 
 echo [INFO] Checking disk space on all drives...
-powershell -Command "Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -eq 3} | Select-Object DeviceID, @{Name='Size(GB)';Expression={[math]::Round($_.Size/1GB,2)}}, @{Name='Used(GB)';Expression={[math]::Round(($_.Size-$_.FreeSpace)/1GB,2)}}, @{Name='Free(GB)';Expression={[math]::Round($_.FreeSpace/1GB,2)}}, @{Name='%Free';Expression={[math]::Round(($_.FreeSpace/$_.Size)*100,2)}} | Format-Table -AutoSize"
+powershell -Command "Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -eq 3} | Select-Object DeviceID, @{Name='Size(GB)';Expression={[math]::Round($_.Size/1GB,2)}}, @{Name='Used(GB)';Expression={[math]::Round(($_.Size-$_.FreeSpace)/1GB,2)}}, @{Name='Free(GB)';Expression={[math]::Round($_.FreeSpace/1GB,2)}}, @{Name='%%Free';Expression={[math]::Round(($_.FreeSpace/$_.Size)*100,2)}} | Format-Table -AutoSize"
 
 echo.
 echo [INFO] Checking largest files and folders on C: drive...
@@ -17,7 +17,7 @@ powershell -Command "Get-WmiObject -Class Win32_Volume | Where-Object {$_.DriveL
 
 echo.
 echo [INFO] Checking for low disk space warnings...
-powershell -Command "Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -eq 3 -and ($_.FreeSpace/$_.Size)*100 -lt 15} | ForEach-Object { Write-Host 'WARNING: Drive' $_.DeviceID 'is running low on space (' ([math]::Round(($_.FreeSpace/$_.Size)*100,2)) '% free)' -ForegroundColor Red }"
+powershell -Command "Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -eq 3 -and ($_.FreeSpace/$_.Size)*100 -lt 15} | ForEach-Object { Write-Host 'WARNING: Drive' $_.DeviceID 'is running low on space (' ([math]::Round(($_.FreeSpace/$_.Size)*100,2)) '%% free)' -ForegroundColor Red }"
 
 echo.
 echo [INFO] Recent large files (last 7 days):
