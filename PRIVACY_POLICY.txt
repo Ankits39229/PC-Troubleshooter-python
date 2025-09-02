@@ -1,0 +1,114 @@
+# PC Troubleshooter Privacy Policy
+
+**Last Updated: August 31, 2025**
+
+## Overview
+
+PC Troubleshooter v1.0 ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use our Windows diagnostic and repair tool.
+
+This privacy policy applies to PC Troubleshooter, a desktop application designed to help users diagnose and fix common Windows system issues.
+
+## Information We Collect
+
+### Local System Data
+PC Troubleshooter collects diagnostic information directly from your Windows system to perform troubleshooting tasks. This includes:
+
+- **System Information**: Operating system version, hardware specifications, and system configuration
+- **Diagnostic Logs**: Error messages, system event logs, and performance metrics generated during troubleshooting
+- **Network Status**: Basic network connectivity information when running network diagnostics
+- **Application Logs**: Records of troubleshooting actions performed and their results
+
+All data collection occurs locally on your device and is not transmitted to external servers.
+
+### No Personal Data Collection
+PC Troubleshooter does not collect:
+- Personal information (name, email, phone number)
+- User account information
+- Location data
+- Internet browsing history
+- Any data that could identify individual users
+
+## How We Use Information
+
+We use the collected information solely for the following purposes:
+
+- **System Diagnostics**: To identify and troubleshoot Windows system issues
+- **Performance Analysis**: To analyze system performance and provide recommendations
+- **Log Generation**: To create detailed logs of troubleshooting activities for user reference
+- **Application Functionality**: To enable the diagnostic tools and features within the application
+
+All processing occurs locally on your device. No data is sent to external servers or third parties.
+
+## Data Storage and Retention
+
+- **Local Storage**: All collected data is stored locally on your device in log files and temporary directories
+- **Retention Period**: Diagnostic logs are retained only for the current session and can be cleared by the user at any time
+- **User Control**: Users have full control over log files and can delete them at any time
+
+## Data Sharing and Disclosure
+
+PC Troubleshooter does not share, sell, or transmit any collected data to:
+
+- Third-party companies
+- External servers
+- Cloud services
+- Other applications
+- Government entities
+
+All diagnostic activities and data remain strictly on your local device.
+
+## Security Measures
+
+We implement appropriate security measures to protect the information collected by PC Troubleshooter:
+
+- **Local Processing**: All data processing occurs on your device only
+- **No Network Transmission**: No data is sent over the internet
+- **User Permissions**: The application requires administrator privileges only for system repairs, not for data collection
+- **Data Isolation**: Collected data is isolated within the application's working directory
+
+## User Rights and Controls
+
+You have the following rights regarding your data:
+
+- **Access**: View all diagnostic logs and collected information
+- **Deletion**: Clear or delete any logs at any time using the application's interface
+- **Control**: Choose which diagnostic tools to run and when
+- **Transparency**: All data collection and usage is clearly documented
+
+## Third-Party Components
+
+PC Troubleshooter uses the following third-party components:
+
+- **PyQt6**: GUI framework (local processing only)
+- **Python Standard Library**: Core system interaction modules
+- **Windows System Tools**: Built-in Windows diagnostic utilities
+
+These components follow their respective privacy policies, but since all processing is local, no external data transmission occurs.
+
+## Children's Privacy
+
+PC Troubleshooter is designed for use by IT professionals, system administrators, and power users. It is not intended for children under 13. We do not knowingly collect any personal information from children.
+
+## Changes to This Privacy Policy
+
+We may update this Privacy Policy from time to time. Any changes will be reflected in the application and documentation. We encourage users to review this policy periodically.
+
+## Contact Information
+
+If you have any questions about this Privacy Policy or PC Troubleshooter, please contact us through:
+
+- **Email**: "ankits39229@gmail.com"
+
+## Compliance
+
+PC Troubleshooter is designed to comply with applicable data protection regulations by:
+
+- Processing all data locally on the user's device
+- Not collecting personal information
+- Providing user control over all data collection and storage
+- Maintaining transparency about data usage
+
+---
+
+**PC Troubleshooter Team**  
+*Committed to transparent and privacy-focused system diagnostics*</content>

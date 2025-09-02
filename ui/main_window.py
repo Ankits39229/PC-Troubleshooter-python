@@ -14,7 +14,7 @@ from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                             QSplitter, QGroupBox, QSpacerItem, QSizePolicy, QApplication,
                             QGraphicsDropShadowEffect, QToolTip, QSystemTrayIcon, QStyle)
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, QTimer, QPropertyAnimation, QEasingCurve, QRect, QParallelAnimationGroup
-from PyQt6.QtGui import QFont, QPixmap, QAction, QPalette, QLinearGradient, QColor, QPainter, QPainterPath, QCursor, QKeySequence, QShortcut
+from PyQt6.QtGui import QFont, QPixmap, QAction, QPalette, QLinearGradient, QColor, QPainter, QPainterPath, QCursor, QKeySequence, QShortcut, QIcon
 
 class ProfessionalButton(QPushButton):
     """A professional button with hover animations and effects"""
@@ -156,8 +156,19 @@ class MainWindow(QMainWindow):
         self.setGeometry(100, 100, 1400, 900)
         self.setMinimumSize(1200, 800)
         
-        # Set window icon (using built-in style)
-        self.setWindowIcon(self.style().standardIcon(self.style().StandardPixmap.SP_ComputerIcon))
+        # Set window icon
+        try:
+            # For bundled executable
+            icon_path = os.path.join(sys._MEIPASS, 'assets', 'icon.ico')
+            self.setWindowIcon(QIcon(icon_path))
+        except AttributeError:
+            # For development
+            icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'assets', 'icon.ico')
+            if os.path.exists(icon_path):
+                self.setWindowIcon(QIcon(icon_path))
+            else:
+                # Fallback to built-in icon
+                self.setWindowIcon(self.style().standardIcon(self.style().StandardPixmap.SP_ComputerIcon))
         
         # Initialize variables
         self.current_theme = "dark"
@@ -215,8 +226,19 @@ class MainWindow(QMainWindow):
         if QSystemTrayIcon.isSystemTrayAvailable():
             self.tray_icon = QSystemTrayIcon(self)
             
-            # Create tray icon from application icon
-            icon = self.style().standardIcon(QStyle.StandardPixmap.SP_ComputerIcon)
+            # Create tray icon from custom icon
+            try:
+                # For bundled executable
+                icon_path = os.path.join(sys._MEIPASS, 'assets', 'icon.ico')
+                icon = QIcon(icon_path)
+            except AttributeError:
+                # For development
+                icon_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'assets', 'icon.ico')
+                if os.path.exists(icon_path):
+                    icon = QIcon(icon_path)
+                else:
+                    # Fallback to built-in icon
+                    icon = self.style().standardIcon(QStyle.StandardPixmap.SP_ComputerIcon)
             self.tray_icon.setIcon(icon)
             
             # Create context menu for tray
